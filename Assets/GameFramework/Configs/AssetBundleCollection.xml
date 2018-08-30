@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UnityGameFramework>
+  <AssetBundleCollection>
+    <AssetBundles>
+      <AssetBundle Name="ToysHosue/UI/UIForms/UIShopForm" LoadType="0" Packed="True" />
+      <AssetBundle Name="ToysHosue/UI/UIItems/HeadImage" LoadType="0" Packed="True" />
+      <AssetBundle Name="ToysHosue/UI/UIItems/Product" LoadType="0" Packed="True" />
+    </AssetBundles>
+    <Assets>
+      <Asset Guid="15c3da6a726cb6046934c916385f81a4" AssetBundleName="ToysHosue/UI/UIItems/Product" />
+      <Asset Guid="6dbdd0ce7c6268c4ab6b7b451cee65a1" AssetBundleName="ToysHosue/UI/UIItems/HeadImage" />
+      <Asset Guid="96e731d37dc01df47a03bbf7cee7ad17" AssetBundleName="ToysHosue/UI/UIForms/UIShopForm" />
+    </Assets>
+  </AssetBundleCollection>
+</UnityGameFramework>

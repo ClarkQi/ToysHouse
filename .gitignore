@@ -1,0 +1,10 @@
+*.apk
+*.csproj
+*.sln
+AssetBundles/
+*.meta
+Assets/StreamingAssets/
+Assets/ToysHosue/Scenes/Test.unity
+Library/
+obj/
+Packages/
