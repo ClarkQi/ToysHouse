@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace muzi
 {
-    public static class AssetUtlity
+    public static class AssetUtility
     {
         public static string GetUIFormPath(UIForm uiForm)
         {

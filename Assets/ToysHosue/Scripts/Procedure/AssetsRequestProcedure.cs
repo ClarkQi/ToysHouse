@@ -27,7 +27,6 @@ namespace muzi
 
             EntryInstance.Event.Subscribe(WebRequestSuccessEventArgs.EventId, OnWebRequestSucceed);
             EntryInstance.Event.Subscribe(WebRequestFailureEventArgs.EventId, OnWebRequestFail);
-            RequestAsset();
         }
 
         protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
@@ -74,7 +73,6 @@ namespace muzi
                     }
                 }
             }
-            
         }
 
         private void OnWebRequestFail(object sender, GameEventArgs e)

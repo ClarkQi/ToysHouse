@@ -152,6 +152,35 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114547925832889306, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_EditorResourceMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20660369688854754, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20660369688854754, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20660369688854754, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235352049993392, guid: 9ca088b339a20924795b296a048473b7, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114066077604596088, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ca088b339a20924795b296a048473b7, type: 2}
   m_IsPrefabParent: 0

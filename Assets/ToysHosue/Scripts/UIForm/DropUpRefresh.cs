@@ -49,11 +49,11 @@ namespace muzi
         IEnumerator TestRefresh()
         {
             Debug.Log("TestRefresh");
-            _productScrollView.enabled = false;
+            _productScrollView.vertical = false;
             AssetsRequestProcedure assetRequsetProcedure = EntryInstance.Procedure.GetProcedure<AssetsRequestProcedure>() as AssetsRequestProcedure;
             assetRequsetProcedure.RequestAsset();
-            yield return new WaitForSeconds(2f);
-            _productScrollView.enabled = true;
+            yield return new WaitForSeconds(1f);
+            _productScrollView.vertical = true;
         }
     }
 }

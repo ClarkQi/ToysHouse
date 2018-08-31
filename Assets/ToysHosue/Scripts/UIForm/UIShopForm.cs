@@ -5,7 +5,7 @@ using GameFramework.Event;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
-
+using GameFramework.Resource;
 namespace muzi
 {
     public class UIShopForm : UIFormLogic
@@ -26,12 +26,19 @@ namespace muzi
         {
             base.OnInit(userData);
 
+            Screen.orientation = ScreenOrientation.Portrait;
+
             GetComponent<RectTransform>().offsetMin = Vector2.zero;
             GetComponent<RectTransform>().offsetMax = Vector2.zero;
+
+            _headScrollView = transform.Find("HeadScrollView").GetComponent<ScrollRect>() ;
+            _productScrollView = transform.Find("ProductScrollView").GetComponent<ScrollRect>();
 
             _productList = new List<UIProduct>();
             _headImage = new List<UIHeadImage>();
 
+            //EntryInstance.Resource.LoadAsset("Assets/ToysHosue/UI/UIItems/HeadImage.prefab", new LoadAssetCallbacks(LoadAssetSucceed, LoadAssetFailed),this);
+            //EntryInstance.Resource.LoadAsset("Assets/ToysHosue/UI/UIItems/Product.prefab", new LoadAssetCallbacks(LoadAssetSucceed, LoadAssetFailed),this);
             //CreateProductItems();
             CreateHeadImgItems();
         }
@@ -40,6 +47,8 @@ namespace muzi
         {
             base.OnOpen(userData);
             EntryInstance.Event.Subscribe((int)EventId.ReceiveProductData, OnReceiveProductData);
+            AssetsRequestProcedure assetRequsetProcedure = EntryInstance.Procedure.GetProcedure<AssetsRequestProcedure>() as AssetsRequestProcedure;
+            assetRequsetProcedure.RequestAsset();
         }
 
         protected override void OnClose(object userData)
@@ -95,5 +104,23 @@ namespace muzi
             _productList.Add(uiProduct);
             return uiProduct;
         }
+
+        //private void LoadAssetSucceed(string assetName, object asset, float duration, object userData)
+        //{
+        //    if (userData!=this)
+        //    {
+        //        return;
+        //    }
+        //    Debug.Log("LoadAssetSucceed=" + assetName);
+        //}
+
+        //private void LoadAssetFailed(string assetName, LoadResourceStatus status, string errorMessage, object userData)
+        //{
+        //    if (userData != this)
+        //    {
+        //        return;
+        //    }
+        //    Debug.Log(assetName);
+        //}
     }
 }

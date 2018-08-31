@@ -45,7 +45,8 @@ namespace muzi
         void Start()
         {
 
-            //GetComponent<LayoutElement>().preferredWidth = Screen.width;
+            GetComponent<LayoutElement>().preferredWidth = Screen.width;
+            GetComponent<LayoutElement>().preferredHeight = 256;
 
             _txtState = _btnDownloadState.transform.Find("TxtState").GetComponent<Text>();
             _imgProgress = _btnDownloadState.transform.Find("ImgProgress").GetComponent<Image>();
@@ -71,7 +72,8 @@ namespace muzi
                 return;
             }
             Debug.Log(_txtName.text + " 下载完成");
-
+            //解压文件
+            ZipUtility.AsyncUnzipFile(args.DownloadPath, Application.streamingAssetsPath, null, new UnzipCallback(args.DownloadPath));
             _txtState.text = "进入";
         }
 

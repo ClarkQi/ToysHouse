@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/ToysHosue/Scenes/Launch.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/ToysHosue/Scenes/Test.unity
+    guid: 8f56a44b5eed38f48a146ac46437d0db
   m_configObjects: {}
