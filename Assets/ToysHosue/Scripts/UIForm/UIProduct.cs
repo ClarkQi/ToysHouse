@@ -10,6 +10,7 @@ namespace muzi
 {
     public class UIProduct : MonoBehaviour
     {
+        public int ID { get; set; }
 
         [SerializeField]
         private Text _txtName;
@@ -26,6 +27,8 @@ namespace muzi
         private Text _txtState;
         private Image _imgProgress;
         private float _downloadProgress;
+
+        private string _savePath;
 
         private DownloadState _downloadState = DownloadState.NotDownloaded;
 
@@ -53,6 +56,7 @@ namespace muzi
 
             _imgProgress.fillAmount = 0f;
             _downloadProgress = 0f;
+            _savePath = Application.persistentDataPath;
         }
 
         private void OnEnable()
@@ -64,6 +68,14 @@ namespace muzi
             //TODO:监听下载进度事件
         }
 
+        private void OnDisable()
+        {
+            _btnDownloadState.onClick.RemoveListener(OnChangeStateClick);
+
+            EntryInstance.Event.Unsubscribe(DownloadSuccessEventArgs.EventId, OnDownloadSuccess);
+            EntryInstance.Event.Unsubscribe(DownloadFailureEventArgs.EventId, OnDownloadFailure);
+        }
+
         private void OnDownloadSuccess(object sender, GameEventArgs e)
         {
             DownloadSuccessEventArgs args = (DownloadSuccessEventArgs)e;
@@ -73,7 +85,7 @@ namespace muzi
             }
             Debug.Log(_txtName.text + " 下载完成");
             //解压文件
-            ZipUtility.AsyncUnzipFile(args.DownloadPath, Application.streamingAssetsPath, null, new UnzipCallback(args.DownloadPath));
+            ZipUtility.AsyncUnzipFile(args.DownloadPath, _savePath, null, new UnzipCallback(args.DownloadPath));
             _txtState.text = "进入";
         }
 
@@ -85,11 +97,6 @@ namespace muzi
                 return;
             }
             Debug.Log("下载失败");
-        }
-
-        private void OnDisable()
-        {
-            _btnDownloadState.onClick.RemoveListener(OnChangeStateClick);
         }
 
         public void Binding(string title, string iconurl, string description,string fileurl, int downloadcount)

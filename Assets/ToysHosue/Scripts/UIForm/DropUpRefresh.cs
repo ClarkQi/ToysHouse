@@ -50,7 +50,7 @@ namespace muzi
         {
             Debug.Log("TestRefresh");
             _productScrollView.vertical = false;
-            AssetsRequestProcedure assetRequsetProcedure = EntryInstance.Procedure.GetProcedure<AssetsRequestProcedure>() as AssetsRequestProcedure;
+            MainUIProcedure assetRequsetProcedure = EntryInstance.Procedure.GetProcedure<MainUIProcedure>() as MainUIProcedure;
             assetRequsetProcedure.RequestAsset();
             yield return new WaitForSeconds(1f);
             _productScrollView.vertical = true;

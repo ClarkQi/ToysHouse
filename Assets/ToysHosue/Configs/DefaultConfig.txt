@@ -1,0 +1,2 @@
+#	配置项	策划备注	配置值
+	domain	api请求域名	http://appadmin.com

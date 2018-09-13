@@ -120,6 +120,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114409218396869214, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_AvailableProcedureTypeNames.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4966857821022916, guid: 9ca088b339a20924795b296a048473b7, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -180,6 +185,26 @@ Prefab:
         type: 2}
       propertyPath: m_UiScaleMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114409218396869214, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_AvailableProcedureTypeNames.Array.data[2]
+      value: muzi.ScanProcedure
+      objectReference: {fileID: 0}
+    - target: {fileID: 114609876244186014, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_ConfigHelperTypeName
+      value: UnityGameFramework.Runtime.DefaultConfigHelper
+      objectReference: {fileID: 0}
+    - target: {fileID: 114409218396869214, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_AvailableProcedureTypeNames.Array.data[0]
+      value: muzi.LaunchProcedure
+      objectReference: {fileID: 0}
+    - target: {fileID: 114409218396869214, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_AvailableProcedureTypeNames.Array.data[1]
+      value: muzi.MainUIProcedure
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ca088b339a20924795b296a048473b7, type: 2}

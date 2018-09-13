@@ -8,47 +8,35 @@ using UnityGameFramework.Runtime;
 using GameFramework.Resource;
 namespace muzi
 {
-    public class UIShopForm : UIFormLogic
+    public class UIShopForm : UGuiForm
     {
         [SerializeField]
-        private UIHeadImage _uiHeadImagePre;
-        [SerializeField]
         private UIProduct _uiProductPre;
-        [SerializeField]
-        private ScrollRect _headScrollView;
         [SerializeField]
         private ScrollRect _productScrollView;
 
         private List<UIProduct> _productList;
-        private List<UIHeadImage> _headImage;
 
         protected override void OnInit(object userData)
         {
             base.OnInit(userData);
 
+            formId = UIFormId.UIShopForm;
+
             Screen.orientation = ScreenOrientation.Portrait;
 
-            GetComponent<RectTransform>().offsetMin = Vector2.zero;
-            GetComponent<RectTransform>().offsetMax = Vector2.zero;
-
-            _headScrollView = transform.Find("HeadScrollView").GetComponent<ScrollRect>() ;
             _productScrollView = transform.Find("ProductScrollView").GetComponent<ScrollRect>();
 
             _productList = new List<UIProduct>();
-            _headImage = new List<UIHeadImage>();
 
-            //EntryInstance.Resource.LoadAsset("Assets/ToysHosue/UI/UIItems/HeadImage.prefab", new LoadAssetCallbacks(LoadAssetSucceed, LoadAssetFailed),this);
-            //EntryInstance.Resource.LoadAsset("Assets/ToysHosue/UI/UIItems/Product.prefab", new LoadAssetCallbacks(LoadAssetSucceed, LoadAssetFailed),this);
-            //CreateProductItems();
-            CreateHeadImgItems();
+            MainUIProcedure mainUIProcedure = EntryInstance.Procedure.GetProcedure<MainUIProcedure>() as MainUIProcedure;
+            mainUIProcedure.RequestAsset();
         }
 
         protected override void OnOpen(object userData)
         {
             base.OnOpen(userData);
             EntryInstance.Event.Subscribe((int)EventId.ReceiveProductData, OnReceiveProductData);
-            AssetsRequestProcedure assetRequsetProcedure = EntryInstance.Procedure.GetProcedure<AssetsRequestProcedure>() as AssetsRequestProcedure;
-            assetRequsetProcedure.RequestAsset();
         }
 
         protected override void OnClose(object userData)
@@ -62,11 +50,12 @@ namespace muzi
             ReceiveProductDataEventArgs args = (ReceiveProductDataEventArgs)e;
             for (int i = 0; i < args.ProductModels.Length; i++)
             {
-                UIProduct product = GetProduct();
+                UIProduct product = GetProduct(args.ProductModels[i].id);
                 if (product!=null)
                 {
                     ProductModel productModel = args.ProductModels[i];
-                    product.Binding(productModel.name, AssetsRequestProcedure.Domain + productModel.iconimage, productModel.description, AssetsRequestProcedure.Domain+productModel.assetfile, productModel.downloadcount);
+                    product.ID = productModel.id;
+                    product.Binding(productModel.name, MainUIProcedure.Domain + productModel.iconimage, productModel.description, MainUIProcedure.Domain+productModel.assetfile, productModel.downloadcount);
                 }
             }
         }
@@ -81,22 +70,12 @@ namespace muzi
         //    }
         //}
 
-        private void CreateHeadImgItems()
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                UIHeadImage img = Instantiate<UIHeadImage>(_uiHeadImagePre, _headScrollView.content);
-                _headImage.Add(img);
-            }
-        }
-
-        private UIProduct GetProduct()
+        private UIProduct GetProduct(int id)
         {
             foreach (var product in _productList)
             {
-                if (!product.gameObject.activeSelf)
+                if (product.ID==id)
                 {
-                    product.gameObject.SetActive(true);
                     return product;
                 }
             }

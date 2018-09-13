@@ -10,7 +10,7 @@ namespace muzi
     public class UIGroupHelper : UIGroupHelperBase
     {
         private Canvas _groupCanvas;
-        private const int DepthFactor = 100;
+        public const int DepthFactor = 100;
         private int _depth = 0;
 
         private void Awake()

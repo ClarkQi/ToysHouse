@@ -11,13 +11,14 @@ namespace muzi
 {
     public class AssetsRequestProcedure : ProcedureBase
     {
-        public static readonly string Domain= "http://192.168.5.100/appadmin/public";//http://192.168.5.100/appadmin/public     http://appadmin.com
+        public static readonly string Domain = "http://appadmin.com";//http://192.168.5.100/appadmin/public     http://appadmin.com
         private string _assetsRequestUrl = Domain+"/api/arproduct/getArproductPage";//?page=1&listRows=12
         public int Page { get; private set; }
         
         protected override void OnInit(ProcedureOwner procedureOwner)
         {
             base.OnInit(procedureOwner);
+            
             Page = 1;
         }
 
