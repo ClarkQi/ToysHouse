@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityGameFramework.Runtime;
+using System.IO;
 
 namespace muzi
 {
@@ -29,6 +30,7 @@ namespace muzi
         private float _downloadProgress;
 
         private string _savePath;
+        private string _downloadPath;
 
         private DownloadState _downloadState = DownloadState.NotDownloaded;
 
@@ -56,7 +58,11 @@ namespace muzi
 
             _imgProgress.fillAmount = 0f;
             _downloadProgress = 0f;
-            _savePath = Application.persistentDataPath;
+            _savePath = Application.persistentDataPath+"/products";
+            if (!Directory.Exists(_savePath))
+            {
+                Directory.CreateDirectory(_savePath);
+            }
         }
 
         private void OnEnable()
@@ -194,7 +200,7 @@ namespace muzi
 
         private void DownLoadFile()
         {
-            EntryInstance.Download.AddDownload(Application.streamingAssetsPath +"/"+_txtName.text+ ".zip", _fileUrl, this);
+            EntryInstance.Download.AddDownload(_savePath + "/"+_txtName.text+ ".zip", _fileUrl, this);
         }
 
         IEnumerator TestDownload()

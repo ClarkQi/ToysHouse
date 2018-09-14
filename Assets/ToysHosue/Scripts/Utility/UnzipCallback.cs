@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using ICSharpCode.SharpZipLib.Zip;
 using UnityEngine;
 using System.IO;
+using System;
 
 namespace muzi
 {
     public class UnzipCallback : ZipUtility.UnzipCallback
     {
         string _path=null;
+        Action _callBack;
         public UnzipCallback(string filePath)
         {
             _path = filePath;
+        }
+
+        public UnzipCallback(string filePath, Action callback)
+        {
+            _path = filePath;
+            _callBack = callback;
         }
         /// <summary>
         /// 解压单个文件或文件夹前执行的回调
@@ -49,7 +57,10 @@ namespace muzi
                 {
                     throw new System.Exception("删除文件出错");
                 }
-                
+                if (_callBack!=null)
+                {
+                    _callBack();
+                }
             }
         }
     }

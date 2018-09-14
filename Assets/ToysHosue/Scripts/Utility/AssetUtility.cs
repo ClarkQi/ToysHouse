@@ -21,6 +21,11 @@ namespace muzi
             return string.Format("Assets/ToysHosue/Configs/{0}.xml", name);
         }
 
+        public static string GetSceneAsset(string name)
+        {
+            return string.Format("Assets/ToysHosue/Scenes/{0}.unity",name);
+        }
+
         public static UIGroup GetFormGroup(UIFormId uiForm)
         {
             switch (uiForm)

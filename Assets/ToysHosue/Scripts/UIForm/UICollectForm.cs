@@ -18,6 +18,15 @@ namespace muzi
         {
             base.OnOpen(userData);
             Debug.Log("UICollectForm Open");
+
+            EntryInstance.UI.OpenDialog(new DialogParams()
+            {
+                Mode = 2,
+                Title = "Hello",
+                Message = "恭喜打开消息弹框",
+                OnClickConfirm = delegate(object data) { Debug.Log("Hello World"); },
+                OnClickCancel=delegate(object data) { Debug.Log("OnClickCancel"); },
+            });
         }
 
         protected override void OnClose(object userData)

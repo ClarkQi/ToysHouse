@@ -100,13 +100,24 @@ namespace muzi
                 return null;
             }
 
-            //if (uiComponent.HasUIForm(uiFormId,uiGroup.ToString()))
-            //{
-            //    UGuiForm uiForm= GetUIForm(uiComponent, uiFormId, uiGroup.ToString());
-            //    return null;
-            //}
-
             return uiComponent.OpenUIForm(assetName, uiGroup.ToString(), pause, userData);
+        }
+
+        public static void OpenDialog(this UIComponent uiComponent, DialogParams dialogParams)
+        {
+            if (((MainUIProcedure)EntryInstance.Procedure.GetProcedure<MainUIProcedure>()).UseNativeDialog)
+            {
+                OpenNativeDialog(dialogParams);
+            }
+            else
+            {
+                uiComponent.OpenUIForm(UIFormId.DialogForm,UIGroup.PopDialog,false, dialogParams);
+            }
+        }
+
+        private static void OpenNativeDialog(DialogParams dialogParams)
+        {
+            throw new System.NotImplementedException("OpenNativeDialog");
         }
     }
 }

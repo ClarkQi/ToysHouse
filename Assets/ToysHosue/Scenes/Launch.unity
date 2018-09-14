@@ -206,6 +206,16 @@ Prefab:
       propertyPath: m_AvailableProcedureTypeNames.Array.data[1]
       value: muzi.MainUIProcedure
       objectReference: {fileID: 0}
+    - target: {fileID: 20660369688854754, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_Depth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20660369688854754, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_ClearFlags
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ca088b339a20924795b296a048473b7, type: 2}
   m_IsPrefabParent: 0

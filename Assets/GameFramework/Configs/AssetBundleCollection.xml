@@ -2,6 +2,8 @@
 <UnityGameFramework>
   <AssetBundleCollection>
     <AssetBundles>
+      <AssetBundle Name="ToysHosue/Scenes/Scan" LoadType="0" Packed="True" />
+      <AssetBundle Name="ToysHosue/UI/UIForms/DialogForm" LoadType="0" Packed="True" />
       <AssetBundle Name="ToysHosue/UI/UIForms/UIBottomBarForm" LoadType="0" Packed="True" />
       <AssetBundle Name="ToysHosue/UI/UIForms/UICollectForm" LoadType="0" Packed="True" />
       <AssetBundle Name="ToysHosue/UI/UIForms/UIScanForm" LoadType="0" Packed="True" />
@@ -10,12 +12,14 @@
       <AssetBundle Name="ToysHosue/UI/UIItems/Product" LoadType="0" Packed="True" />
     </AssetBundles>
     <Assets>
+      <Asset Guid="04d7dde7615d71b4db1a0c8d67a62e95" AssetBundleName="ToysHosue/UI/UIForms/DialogForm" />
       <Asset Guid="15c3da6a726cb6046934c916385f81a4" AssetBundleName="ToysHosue/UI/UIItems/Product" />
       <Asset Guid="6dbdd0ce7c6268c4ab6b7b451cee65a1" AssetBundleName="ToysHosue/UI/UIItems/HeadImage" />
       <Asset Guid="6ff2bf182268858429ece6c050cb5972" AssetBundleName="ToysHosue/UI/UIForms/UIBottomBarForm" />
       <Asset Guid="96e731d37dc01df47a03bbf7cee7ad17" AssetBundleName="ToysHosue/UI/UIForms/UIShopForm" />
       <Asset Guid="aacfae3e129326441b52d4f3fd059a8e" AssetBundleName="ToysHosue/UI/UIForms/UIScanForm" />
       <Asset Guid="eb782120f0789a943b8051bba8fcfc54" AssetBundleName="ToysHosue/UI/UIForms/UICollectForm" />
+      <Asset Guid="f677f0dd008988a459b55b10dc668abd" AssetBundleName="ToysHosue/Scenes/Scan" />
     </Assets>
   </AssetBundleCollection>
 </UnityGameFramework>

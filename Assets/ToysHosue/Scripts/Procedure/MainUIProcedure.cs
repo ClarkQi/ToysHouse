@@ -16,6 +16,17 @@ namespace muzi
         //private UIFormId _uiForm = UIFormId.UIBottomBarForm;
         private UGuiForm _currentForm=null;
         public UGuiForm CurrentForm { get { return _currentForm; } }
+
+        private UGuiForm _dialogForm = null;
+
+        public bool UseNativeDialog
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
@@ -64,27 +75,42 @@ namespace muzi
             OpenUIFormSuccessEventArgs args = (OpenUIFormSuccessEventArgs)e;
             if (args.UserData == null)
                 return;
-            switch ((UIFormId)args.UserData)
+            
+            string typeName= args.UserData.GetType().Name;
+            if (typeName.Equals("UIFormId"))
             {
-                case UIFormId.UIBottomBarForm:
-                    break;
-                case UIFormId.UICollectForm:
-                    RefashCurrentForm();
-                    break;
-                case UIFormId.UIScanForm:
-                    RefashCurrentForm();
-                    break;
-                case UIFormId.UIShopForm:
-                    RefashCurrentForm();
-                    break;
-                case UIFormId.DialogForm:
-                    break;
-                default:
-                    break;
+                switch ((UIFormId)args.UserData)
+                {
+                    case UIFormId.UIBottomBarForm:
+                        break;
+                    case UIFormId.UICollectForm:
+                        RefashCurrentForm();
+                        break;
+                    case UIFormId.UIScanForm:
+                        RefashCurrentForm();
+                        break;
+                    case UIFormId.UIShopForm:
+                        RefashCurrentForm();
+                        break;
+                    case UIFormId.DialogForm:
+                        break;
+                    default:
+                        break;
+                }
             }
+            else if (typeName.Equals("DialogParams"))
+            {
+                if (_dialogForm!=null&&_dialogForm.IsAvailable)
+                    _dialogForm.Close();
+                _dialogForm = (UGuiForm)args.UIForm.Logic;
+            }
+
             //_uiForm = (UIFormId)args.UserData;
-            _currentForm = (UGuiForm)args.UIForm.Logic;
-            Debug.Log(_currentForm.Name + "页面打开");
+            if (!typeName.Equals("DialogParams"))
+            {
+                _currentForm = (UGuiForm)args.UIForm.Logic;
+                Debug.Log(_currentForm.Name + "页面打开");
+            }
         }
 
         void RefashCurrentForm()
@@ -96,7 +122,7 @@ namespace muzi
         }
 
         #region ShopForm下载
-        public static readonly string Domain = "http://appadmin.com";//http://192.168.5.100/appadmin/public     http://appadmin.com
+        public static readonly string Domain = "http://192.168.5.100/appadmin/public";//http://192.168.5.100/appadmin/public     http://appadmin.com
         private string _assetsRequestUrl = Domain + "/api/arproduct/getArproductPage";//?page=1&listRows=12
         public int Page { get; private set; }
 
