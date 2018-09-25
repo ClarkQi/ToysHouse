@@ -7,6 +7,7 @@
         UICollectForm,
         UIScanForm,
         UIShopForm,
+        UIARForm,
         DialogForm
     }
 }

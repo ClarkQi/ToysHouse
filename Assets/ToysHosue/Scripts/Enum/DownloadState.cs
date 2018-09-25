@@ -5,6 +5,8 @@
         NotDownloaded,
         Downloading,
         Download,
+        Unziping,
+        Compete,
         Pause,
     }
 }

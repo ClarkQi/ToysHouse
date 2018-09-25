@@ -11,6 +11,7 @@ using GameFramework.ObjectPool;
 using GameFramework.Resource;
 using System;
 using UnityEngine;
+using muzi;
 
 namespace UnityGameFramework.Runtime
 {
@@ -25,6 +26,7 @@ namespace UnityGameFramework.Runtime
 
         private IResourceManager m_ResourceManager = null;
         private EventComponent m_EventComponent = null;
+
         private bool m_EditorResourceMode = false;
         private bool m_ForceUnloadUnusedAssets = false;
         private bool m_PreorderUnloadUnusedAssets = false;
@@ -89,6 +91,20 @@ namespace UnityGameFramework.Runtime
 
         [SerializeField]
         private int m_LoadResourceAgentHelperCount = 3;
+
+        private ResourceHelper _ResourceHelper = null;
+
+        public ResourceHelper ResourceHelper
+        {
+            get
+            {
+                if (_ResourceHelper==null)
+                {
+                    _ResourceHelper = GetComponentInChildren<ResourceHelper>();
+                }
+                return _ResourceHelper;
+            }
+        }
 
         /// <summary>
         /// 获取资源只读路径。
@@ -530,6 +546,8 @@ namespace UnityGameFramework.Runtime
             {
                 AddLoadResourceAgentHelper(i);
             }
+
+            CreateResourceExtension();
         }
 
         private void Update()
@@ -566,9 +584,9 @@ namespace UnityGameFramework.Runtime
         }
 
         /// <summary>
-        /// 设置当前变体。
+        /// 设置当前字体。
         /// </summary>
-        /// <param name="currentVariant">当前变体。</param>
+        /// <param name="currentVariant">当前字体。</param>
         public void SetCurrentVariant(string currentVariant)
         {
             m_ResourceManager.SetCurrentVariant(!string.IsNullOrEmpty(currentVariant) ? currentVariant : null);
@@ -844,6 +862,12 @@ namespace UnityGameFramework.Runtime
             transform.localScale = Vector3.one;
 
             m_ResourceManager.AddLoadResourceAgentHelper(loadResourceAgentHelper);
+        }
+
+        private void CreateResourceExtension()
+        {
+            GameObject resourceExtension = new GameObject("ResourceExtension");
+            resourceExtension.transform.SetParent(m_InstanceRoot);
         }
 
         private void OnResourceUpdateStart(object sender, GameFramework.Resource.ResourceUpdateStartEventArgs e)

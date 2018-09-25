@@ -109,9 +109,9 @@ namespace UnityGameFramework.Runtime
         /// </summary>
         /// <returns>要获取的流程。</returns>
         /// <typeparam name="T">流程类型。</typeparam>
-        public ProcedureBase GetProcedure<T>() where T : ProcedureBase
+        public T GetProcedure<T>() where T : ProcedureBase
         {
-            return m_ProcedureManager.GetProcedure<T>();
+            return (T)m_ProcedureManager.GetProcedure<T>();
         }
     }
 }

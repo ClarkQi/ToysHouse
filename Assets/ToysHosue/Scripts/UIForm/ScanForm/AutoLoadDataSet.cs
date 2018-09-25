@@ -16,7 +16,7 @@ namespace muzi
 
         ObjectTracker tracker;
         DataSet TotalDatas;
-        bool isLoaded = false;
+        static bool isLoaded = false;
         bool isUnzip = false;
         string dataPath;
         string zipPath;
@@ -86,10 +86,10 @@ namespace muzi
             });
         }
 
-        void OnUnzipFileSucceed()
+        void OnUnzipFileSucceed(bool isSucceed)
         {
             Debug.Log("OnUnzipFileSucceed");
-            isUnzip = false;
+            isUnzip = true;
         }
 
         void GetFile()

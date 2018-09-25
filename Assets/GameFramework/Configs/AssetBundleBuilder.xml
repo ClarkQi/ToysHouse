@@ -2,11 +2,11 @@
 <UnityGameFramework>
   <AssetBundleBuilder>
     <Settings>
-      <InternalResourceVersion>6</InternalResourceVersion>
+      <InternalResourceVersion>16</InternalResourceVersion>
       <Platforms>128</Platforms>
-      <ZipSelected>True</ZipSelected>
+      <ZipSelected>False</ZipSelected>
       <RecordScatteredDependencyAssetsSelected>False</RecordScatteredDependencyAssetsSelected>
-      <UncompressedAssetBundleSelected>True</UncompressedAssetBundleSelected>
+      <UncompressedAssetBundleSelected>False</UncompressedAssetBundleSelected>
       <DisableWriteTypeTreeSelected>False</DisableWriteTypeTreeSelected>
       <DeterministicAssetBundleSelected>False</DeterministicAssetBundleSelected>
       <ForceRebuildAssetBundleSelected>False</ForceRebuildAssetBundleSelected>

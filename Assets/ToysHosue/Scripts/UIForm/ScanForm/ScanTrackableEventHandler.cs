@@ -8,84 +8,88 @@ Confidential and Proprietary - Protected under copyright and other laws.
 
 using UnityEngine;
 using Vuforia;
+using GameFramework;
 
-/// <summary>
-/// A custom handler that implements the ITrackableEventHandler interface.
-/// 
-/// Changes made to this file could be overwritten when upgrading the Vuforia version. 
-/// When implementing custom event handler behavior, consider inheriting from this class instead.
-/// </summary>
-public class ScanTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
-{
-    #region PROTECTED_MEMBER_VARIABLES
+using UnityGameFramework.Runtime;
 
-    protected TrackableBehaviour mTrackableBehaviour;
-
-    #endregion // PROTECTED_MEMBER_VARIABLES
-
-    #region UNITY_MONOBEHAVIOUR_METHODS
-
-    protected virtual void Start()
-    {
-        mTrackableBehaviour = GetComponent<TrackableBehaviour>();
-        if (mTrackableBehaviour)
-            mTrackableBehaviour.RegisterTrackableEventHandler(this);
-    }
-
-    protected virtual void OnDestroy()
-    {
-        if (mTrackableBehaviour)
-            mTrackableBehaviour.UnregisterTrackableEventHandler(this);
-    }
-
-    #endregion // UNITY_MONOBEHAVIOUR_METHODS
-
-    #region PUBLIC_METHODS
-
+namespace muzi {
     /// <summary>
-    ///     Implementation of the ITrackableEventHandler function called when the
-    ///     tracking state changes.
+    /// A custom handler that implements the ITrackableEventHandler interface.
+    /// 
+    /// Changes made to this file could be overwritten when upgrading the Vuforia version. 
+    /// When implementing custom event handler behavior, consider inheriting from this class instead.
     /// </summary>
-    public void OnTrackableStateChanged(
-        TrackableBehaviour.Status previousStatus,
-        TrackableBehaviour.Status newStatus)
+    public class ScanTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
     {
-        if (newStatus == TrackableBehaviour.Status.DETECTED ||
-            newStatus == TrackableBehaviour.Status.TRACKED ||
-            newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
+        #region PROTECTED_MEMBER_VARIABLES
+
+        protected TrackableBehaviour mTrackableBehaviour;
+
+        #endregion // PROTECTED_MEMBER_VARIABLES
+
+        #region UNITY_MONOBEHAVIOUR_METHODS
+
+        protected virtual void Start()
         {
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
-            OnTrackingFound();
+            mTrackableBehaviour = GetComponent<TrackableBehaviour>();
+            if (mTrackableBehaviour)
+                mTrackableBehaviour.RegisterTrackableEventHandler(this);
         }
-        else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
-                 newStatus == TrackableBehaviour.Status.NO_POSE)
+
+        protected virtual void OnDestroy()
         {
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
-            OnTrackingLost();
+            if (mTrackableBehaviour)
+                mTrackableBehaviour.UnregisterTrackableEventHandler(this);
         }
-        else
+
+        #endregion // UNITY_MONOBEHAVIOUR_METHODS
+
+        #region PUBLIC_METHODS
+
+        /// <summary>
+        ///     Implementation of the ITrackableEventHandler function called when the
+        ///     tracking state changes.
+        /// </summary>
+        public void OnTrackableStateChanged(
+            TrackableBehaviour.Status previousStatus,
+            TrackableBehaviour.Status newStatus)
         {
-            // For combo of previousStatus=UNKNOWN + newStatus=UNKNOWN|NOT_FOUND
-            // Vuforia is starting, but tracking has not been lost or found yet
-            // Call OnTrackingLost() to hide the augmentations
-            OnTrackingLost();
+            if (newStatus == TrackableBehaviour.Status.DETECTED ||
+                newStatus == TrackableBehaviour.Status.TRACKED ||
+                newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
+            {
+                Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
+                OnTrackingFound();
+            }
+            else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
+                     newStatus == TrackableBehaviour.Status.NO_POSE)
+            {
+                Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
+                OnTrackingLost();
+            }
+            else
+            {
+                // For combo of previousStatus=UNKNOWN + newStatus=UNKNOWN|NOT_FOUND
+                // Vuforia is starting, but tracking has not been lost or found yet
+                // Call OnTrackingLost() to hide the augmentations
+                OnTrackingLost();
+            }
         }
+
+        #endregion // PUBLIC_METHODS
+
+        #region PROTECTED_METHODS
+
+        protected virtual void OnTrackingFound()
+        {
+            EntryInstance.Event.FireNow(this,new TrackingFoundEventArgs(gameObject,mTrackableBehaviour));
+        }
+
+        protected virtual void OnTrackingLost()
+        {
+            EntryInstance.Event.FireNow(this, new TrackingLostEventArgs(gameObject, mTrackableBehaviour));
+        }
+
+        #endregion // PROTECTED_METHODS
     }
-
-    #endregion // PUBLIC_METHODS
-
-    #region PROTECTED_METHODS
-
-    protected virtual void OnTrackingFound()
-    {
-
-    }
-
-
-    protected virtual void OnTrackingLost()
-    {
-
-    }
-
-    #endregion // PROTECTED_METHODS
 }

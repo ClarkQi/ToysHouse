@@ -29,6 +29,7 @@ namespace muzi
             TogCollect.onValueChanged.AddListener(OnCollectClick);
             TogScan.onValueChanged.AddListener(OnScanClick);
             TogShop.onValueChanged.AddListener(OnShopClick);
+            TogScan.isOn = true;
 
             EntryInstance.UI.OpenUIForm(UIFormId.UIScanForm, UIGroup.Content, true, UIFormId.UIScanForm);
         }

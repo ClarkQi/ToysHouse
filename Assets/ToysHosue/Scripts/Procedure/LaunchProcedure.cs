@@ -30,6 +30,7 @@ namespace muzi
                 return;
             }
             EntryInstance.UI.OpenUIForm(UIFormId.UIBottomBarForm, UIGroup.BottomBar, true, UIFormId.UIBottomBarForm);
+
             ChangeState<MainUIProcedure>(procedureOwner);
         }
 

@@ -70,6 +70,11 @@ namespace muzi
             }
         }
 
+        public void OpenBottomBarForm()
+        {
+            EntryInstance.UI.OpenUIForm(UIFormId.UIBottomBarForm, UIGroup.BottomBar, true, UIFormId.UIBottomBarForm);
+        }
+
         private void OnUIFormOpenSuccess(object sender, GameEventArgs e)
         {
             OpenUIFormSuccessEventArgs args = (OpenUIFormSuccessEventArgs)e;
@@ -79,23 +84,10 @@ namespace muzi
             string typeName= args.UserData.GetType().Name;
             if (typeName.Equals("UIFormId"))
             {
-                switch ((UIFormId)args.UserData)
+                UGuiForm form= EntryInstance.UI.GetUIForm((UIFormId)args.UserData);
+                if (form!=null&&form.UIForm.UIGroup.Name.Equals(UIGroup.Content.ToString()))
                 {
-                    case UIFormId.UIBottomBarForm:
-                        break;
-                    case UIFormId.UICollectForm:
-                        RefashCurrentForm();
-                        break;
-                    case UIFormId.UIScanForm:
-                        RefashCurrentForm();
-                        break;
-                    case UIFormId.UIShopForm:
-                        RefashCurrentForm();
-                        break;
-                    case UIFormId.DialogForm:
-                        break;
-                    default:
-                        break;
+                    RefashCurrentForm();
                 }
             }
             else if (typeName.Equals("DialogParams"))

@@ -216,6 +216,42 @@ Prefab:
       propertyPath: m_ClearFlags
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114303974812585616, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_ReadWritePathType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114303974812585616, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_LoadResourceAgentHelperCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114303974812585616, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_ResourceMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114303974812585616, guid: 9ca088b339a20924795b296a048473b7,
+        type: 2}
+      propertyPath: m_ResourceHelperTypeName
+      value: muzi.ResourceHelper
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ca088b339a20924795b296a048473b7, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &551428819 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1077865604360560, guid: 9ca088b339a20924795b296a048473b7,
+    type: 2}
+  m_PrefabInternal: {fileID: 551428818}
+--- !u!114 &551428820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 551428819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ce0e5c0c320d3d409af19d9b023bb20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

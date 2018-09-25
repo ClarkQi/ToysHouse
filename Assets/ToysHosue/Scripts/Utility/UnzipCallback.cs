@@ -10,13 +10,13 @@ namespace muzi
     public class UnzipCallback : ZipUtility.UnzipCallback
     {
         string _path=null;
-        Action _callBack;
+        Action<bool> _callBack;
         public UnzipCallback(string filePath)
         {
             _path = filePath;
         }
 
-        public UnzipCallback(string filePath, Action callback)
+        public UnzipCallback(string filePath, Action<bool> callback)
         {
             _path = filePath;
             _callBack = callback;
@@ -57,9 +57,16 @@ namespace muzi
                 {
                     throw new System.Exception("删除文件出错");
                 }
-                if (_callBack!=null)
+                if (_callBack != null)
                 {
-                    _callBack();
+                    _callBack(true);
+                }
+            }
+            else
+            {
+                if (_callBack != null)
+                {
+                    _callBack(false);
                 }
             }
         }
